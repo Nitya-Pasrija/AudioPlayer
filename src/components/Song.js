@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+const Song = ({ currentsongs }) => {
+  const rotate = useRef();
+  const colors = ["red", "green", "pink", "blue", "white", "orange", 0o0];
+  let [count, setCount] = useState(0);
+  setInterval(() => {
+    count += 1;
+    setCount(count);
+  }, 600);
+  useEffect(() => {
+    rotate.current.style.border = `3px solid ${
+      colors[Math.floor(Math.random() * colors.length)]
+    }`;
+  }, [count]);
 
-const Song = ({ currentSong, isPlaying }) => {
   return (
-    <div className="song-container">
-      <img
-        src={currentSong.cover}
-        alt={currentSong.name}
-        className={isPlaying ? "rotate" : ""}
-      />
-      <h2>{currentSong.name}</h2>
-      <h3>{currentSong.artist}</h3>
+    <div className="song_container">
+      <img ref={rotate} src={currentsongs.cover} alt={currentsongs.name} />
+      <h2>{currentsongs.name}</h2>
+      <h3>{currentsongs.artist}</h3>
     </div>
   );
 };

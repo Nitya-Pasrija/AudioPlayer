@@ -6,27 +6,28 @@
 h1,
 h2,
 h3 {
-  color: rgb(51, 49, 49);
+  color: rgb(14, 14, 55);
 }
-h3,
-h4 {
-  font-weight: 400;
-  color: rgb(112, 109, 109);
-}
-
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "SF Pro Display", sans-serif;
+ 
 }
-
-.App {
-  transition: all 0.5s ease;
+.App{
+  padding-top: 10px;
+ background-color: #F1F1F1;
+ height: 100vh;
+ 
 }
-
-.library-active {
-  margin-left: 15%;
+.darkApp{
+background-color: #0b0018;
+.library{
+background-color: #0b0018;
 }
-
-@import "./song";
-@import "./player";
-@import "./library";
-@import "./nav";
+*{
+  color: #F1F1F1
+}
+}
+@import "song";
+@import "playerSong";
+@import "library";
+@import "nav";

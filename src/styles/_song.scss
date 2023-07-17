@@ -1,26 +1,14 @@
-.song-container {
+.song_container {
   min-height: 60vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  img {
+  flex-direction: column;
+  img{
     width: 20%;
     border-radius: 50%;
-  }
-  h2 {
-    padding: 3rem 1rem 1rem 1rem;
-  }
-  h3 {
-    font-size: 1rem;
-  }
-}
-
-.rotate {
-  animation: rotation 8s infinite linear;
-}
-
-@keyframes rotation {
+      animation: rotation 2.5s infinite linear;
+  @keyframes rotation {
   from {
     transform: rotate(0deg);
   }
@@ -28,11 +16,35 @@
     transform: rotate(359deg);
   }
 }
-
-@media screen and (max-width: 768px) {
-  .song-container {
-    img {
-      width: 60%;
+  }
+  h2{
+    padding: 3rem 1rem 1rem 1rem;
+  }
+  h3{
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width:1368px) {
+  .song_container{
+    min-height: 50vh;
+    img{
+      width: 30%;
+    }
+  }
+}
+@media screen and (max-width:1268px) {
+  .song_container{
+    min-height: 50vh;
+    img{
+      width: 40%;
+    }
+  }
+}
+@media screen and (max-width:668px) {
+  .song_container{
+    min-height: 40vh;
+    img{
+      width: 55%;
     }
   }
 }
