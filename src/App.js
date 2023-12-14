@@ -5,10 +5,10 @@ import Song from "./components/Song";
 import data from "./util";
 import Nav from "./components/Nav";
 function App() {
-  const audioRef = useRef(null);
+  const audioRef = useRef(0.0);
   const [songs, setSongs] = useState(data);
   const [currentsongs, setCurrentsongs] = useState(songs[0]);
-  
+
   const [isPlaying, setIsPlaying] = useState(false);
   // vaqti uchun
   const [songInfo, setSongInfo] = useState({
