@@ -20,8 +20,8 @@ const Player = ({
   setCurrentsongs,
   setSongs,
 }) => {
-  useEffect(()=>{
-      const newSong = songs.map((song) => {
+  useEffect(() => {
+    const newSong = songs.map((song) => {
       if (song.id === currentsongs.id) {
         return {
           ...song,
@@ -32,7 +32,7 @@ const Player = ({
       }
     });
     setSongs(newSong);
-  },[currentsongs])
+  }, [currentsongs]);
   const playSonsHandler = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -40,7 +40,6 @@ const Player = ({
     } else {
       audioRef.current.play();
       setIsPlaying(!isPlaying);
-      
     }
   };
 
@@ -51,24 +50,42 @@ const Player = ({
   };
   const trackHandler = (direction) => {
     let curretIndex = songs.findIndex((song) => song.id === currentsongs.id);
-     if (direction === "skipBack") {
-  if((curretIndex-1)%songs.length===-1){
-    setCurrentsongs(songs[songs.length-1])
-    playSong(isPlaying, audioRef);
-    return;
-  }
-       setCurrentsongs(songs[curretIndex - 1 % songs.length]);
-       console.log(songs[Math.abs(curretIndex - 1 % songs.length)]);
-    playSong(isPlaying, audioRef);
-
-     }
-    if (direction === "forward") {
-      setCurrentsongs(songs[(curretIndex+1)%songs.length])
-    playSong(isPlaying,audioRef)
-
+    if (direction === "skipBack") {
+      if ((curretIndex - 1) % songs.length === -1) {
+        setCurrentsongs(songs[songs.length - 1]);
+        playSong(isPlaying, audioRef);
+        return;
+      }
+      setCurrentsongs(songs[curretIndex - (1 % songs.length)]);
+      console.log(songs[Math.abs(curretIndex - (1 % songs.length))]);
+      playSong(isPlaying, audioRef);
     }
-      
+    if (direction === "forward") {
+      setCurrentsongs(songs[(curretIndex + 1) % songs.length]);
+      playSong(isPlaying, audioRef);
+    }
   };
+
+  //console.log(songInfo.duration);
+  //const d = songInfo.duration === 0 ? NaN : songInfo.duration;
+
+  const autoPlay = () => {
+    if (songInfo.duration !== 0) {
+      if (audioRef.current.currentTime === songInfo.duration) {
+        //console.log(songInfo.duration);
+        //console.log(audioRef.current.currentTime);
+        //console.log("hey");
+        setTimeout(() => {
+          trackHandler("forward");
+        }, 5000);
+      }
+    }
+  };
+
+  //console.log(d);
+  //setInterval(() => {autoPlay()}, 5000);
+  autoPlay();
+
   const dragHandler = (e) => {
     audioRef.current.currentTime = e.target.value;
     setSongInfo({
